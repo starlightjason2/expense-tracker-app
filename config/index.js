@@ -1,9 +1,9 @@
+const config = require('config');
 const dotenv = require('dotenv');
 
 dotenv.config();
 
 module.exports = {
-  PORT: process.env.PORT,
-  MONGO_URI: process.env.MONGO_URI,
-  MONGO_DB_NAME: process.env.MONGO_DB_NAME,
+  PORT: process.env.PORT || 5000,
+  MONGO_URI: process.env.MONGO_URI || config.get('mongoURI')
 };

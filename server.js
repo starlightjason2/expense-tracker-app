@@ -19,10 +19,9 @@ if(process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
 }
 
-// Connect to db
-console.log(`connecting to ${config.MONGO_URI}/${config.MONGO_DB_NAME}`)
+// connect to db
 mongoose
-    .connect(`${config.MONGO_URI}/${config.MONGO_DB_NAME}`, {
+    .connect(config.MONGO_URI, {
         useNewUrlParser: true,
         useCreateIndex: true,
         useUnifiedTopology: true
@@ -40,4 +39,5 @@ if(process.env.NODE_ENV === 'production') {
     app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html')))
 }
 
+// Run server
 app.listen(config.PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${config.PORT}`.yellow.bold));
